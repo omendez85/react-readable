@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { Route, Link } from 'react-router-dom';
 
-import * as Api from '../utils/api';
+import * as Api from './utils/api';
 
-import Header from './header';
-import Categories from './categories';
+import Header from './components/header';
+import Categories from './components/categories';
 
-import * as commentActions from '../actions/comments';
-import * as postActions from '../actions/posts';
+import * as commentActions from './actions/comments';
+import * as postActions from './actions/posts';
 
 class App extends Component {
   state = {
@@ -25,7 +26,15 @@ class App extends Component {
     return (
       <div className="App">
         <Header/>
-        <Categories categories={this.state.categories}/>
+
+        <Route exact path='/' render={() => (
+          <Categories categories={this.state.categories}/>
+        )}/>
+
+        <Route exact path='/categorie' render={() => (
+          <div>Filter</div>
+        )}/>
+
       </div>
     );
   }

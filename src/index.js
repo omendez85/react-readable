@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
+import { BrowserRouter, HashRouter } from 'react-router-dom'
 import './css/blaze.min.css';
 import reducers from './reducers'
-import App from './components/App';
+import App from './App';
 
+const Router = ( window.location.host.includes('github') ) ? HashRouter : BrowserRouter;
 
 const logger = store => next => action => {
   console.group(action.type)
@@ -24,8 +26,10 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById('root')
 )
