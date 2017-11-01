@@ -31,7 +31,7 @@ class App extends Component {
           <Categories categories={this.state.categories}/>
         )}/>
 
-        <Route exact path='/categorie' render={() => (
+        <Route exact path='/category' render={() => (
           <div>Filter</div>
         )}/>
 
