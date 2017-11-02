@@ -6,14 +6,15 @@ import {
 } from '../actions/posts';
 
 const initialCommentState = {
-    id: null,
-    timestamp: null,
-    title: null,
-    body: null,
-    author: null,
-    category: null,
-    voteScore: null,
-    deleted: null
+    comments: []
+    // id: null,
+    // timestamp: null,
+    // title: null,
+    // body: null,
+    // author: null,
+    // category: null,
+    // voteScore: null,
+    // deleted: null
 }
 
 const posts = function (state = initialCommentState, action) {

@@ -6,14 +6,15 @@ import {
 } from '../actions/comments';
 
 const initialCommentState = {
-    id: null,
-    parentId: null,
-    timestamp: null,
-    body: null,
-    author: null,
-    voteScore: null,
-    deleted: null,
-    parentDeleted: null
+    posts: []
+    // id: null,
+    // parentId: null,
+    // timestamp: null,
+    // body: null,
+    // author: null,
+    // voteScore: null,
+    // deleted: null,
+    // parentDeleted: null
 }
 
 const comments = function (state = initialCommentState, action) {

@@ -27,8 +27,7 @@ export const getPostsByCategorie = (categoryId) =>
 //      Get all of the posts. Useful for the main page when no category is selected.
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
-    .then(res => res.json())
-    .then(data => data.categories);
+    .then(res => res.json());
 
 //  POST /posts
 //    USAGE:

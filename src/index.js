@@ -4,8 +4,12 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import { BrowserRouter, HashRouter } from 'react-router-dom'
 import './css/blaze.min.css';
+import './css/styles.css';
 import reducers from './reducers'
 import App from './App';
+
+
+var hashHistory = require('react-router').hashHistory;
 
 const Router = ( window.location.host.includes('github') ) ? HashRouter : BrowserRouter;
 
@@ -26,10 +30,10 @@ const store = createStore(
 )
 
 ReactDOM.render(
-  <Router>
     <Provider store={store}>
-      <App />
-    </Provider>
-  </Router>,
+        <Router>
+            <App />
+        </Router>
+    </Provider>,
   document.getElementById('root')
 )

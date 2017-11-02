@@ -1,7 +1,15 @@
+export const INIT_POST = 'INIT_POST'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'REMOVE_POST'
+
+export function initPosts ({ title, body, author, category }) {
+  return {
+    type: INIT_POST,
+    posts: []
+  }
+}
 
 export function addPost ({ title, body, author, category }) {
   return {
