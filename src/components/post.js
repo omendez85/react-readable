@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class Post extends Component {
-  render() {
+const Post = () => {
+    console.log(this);
+    // let post = props.posts.filter( post => post.id === props.match.params.postID);
+    // console.log(post);
+    // let date = new Date(props.post.timestamp);
+    // date = date.toGMTString();
+    //
+    // let resumeBody = (props.post.body.length >= 100) ? props.post.body.substring(0,100) : props.post.body;
     return (
         <div className="o-grid__cell o-grid__cell--width-100 o-grid__cell--width-50@small o-grid__cell--width-33@medium">
-            <div className="o-grid-text">
-                <h2 className="c-heading">
-                    <Link to={`/post/${this.props.post.id}`} className="c-link c-link--info"> {this.props.post.title} </Link>
-                </h2>
-                <span className="c-heading__sub">Category: {this.props.post.category}</span> <br/>
-                <span className="c-heading__sub">By: {this.props.post.author}</span>
-                <p className="c-paragraph">{this.props.post.body}</p>
-            </div>
+            adasdasd
         </div>
     );
-  }
-}
+};
 
-export default Post;
+export default Post

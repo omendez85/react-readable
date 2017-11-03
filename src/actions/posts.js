@@ -1,15 +1,32 @@
-export const INIT_POST = 'INIT_POST'
+import * as Api from '../utils/api';
+
+export const INIT_POSTS = 'INIT_POSTS'
 export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
-export const VOTE_POST = 'REMOVE_POST'
+export const VOTE_POST = 'VOTE_POST'
+export const GET_POST = 'GET_POST'
 
-export function initPosts ({ title, body, author, category }) {
-  return {
-    type: INIT_POST,
-    posts: []
-  }
+export function initPosts (posts) {
+    return {
+        type: INIT_POSTS,
+        data: posts
+    }
 }
+
+export function getInitListPosts() {
+    return dispatch => {
+        console.log(1111);
+        Api.getCategories()
+            .then((posts) => {
+                console.log(posts);
+                dispatch(initPosts(posts));
+            });
+      };
+}
+
+
+
 
 export function addPost ({ title, body, author, category }) {
   return {
@@ -42,6 +59,14 @@ export function editPost ({ id, title, body, author, category }) {
 export function votePost ({ id }) {
   return {
     type: VOTE_POST,
+    id
+  }
+}
+
+
+export function getPost ({ id }) {
+  return {
+    type: GET_POST,
     id
   }
 }

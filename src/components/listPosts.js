@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import lang from '../utils/lang';
-import Post from '../components/post';
+import ResumePost from '../components/resumePost';
 import { Link } from 'react-router-dom';
 
 class ListPosts extends Component {
@@ -9,7 +9,7 @@ class ListPosts extends Component {
         <div className="o-grid__cell list-posts">
             <div className="o-grid o-grid--wrap">
                   { this.props.posts.map( (post, i) => (
-                      <Post post={post} key={i}>first</Post>
+                      <ResumePost post={post} key={i}>first</ResumePost>
                   ))}
             </div>
         </div>

@@ -1,34 +1,41 @@
-import {
-  ADD_POST,
-  REMOVE_POST,
-  EDIT_POST,
-  VOTE_POST,
-} from '../actions/posts';
+import * as POSTS_ACTIONS from '../actions/posts';
 
-const initialCommentState = {
-    comments: []
-    // id: null,
-    // timestamp: null,
-    // title: null,
-    // body: null,
-    // author: null,
-    // category: null,
-    // voteScore: null,
-    // deleted: null
-}
+// const posts = {
+//     posts: []
+//     // id: null,
+//     // timestamp: null,
+//     // title: null,
+//     // body: null,
+//     // author: null,
+//     // category: null,
+//     // voteScore: null,
+//     // deleted: null
+// }
 
-const posts = function (state = initialCommentState, action) {
-  switch (action.type) {
-    case ADD_POST:
-      const { recipe } = action
+const initialPostsState = [];
 
-      return {
-        ...state,
-        [recipe.label]: recipe,
-      }
-    default :
-      return state
-  }
+const posts = function (state = initialPostsState, action) {
+    switch (action.type) {
+        case POSTS_ACTIONS.INIT_POSTS:
+                return [...action.data]
+        case POSTS_ACTIONS.ADD_POST:
+
+            break;
+        case POSTS_ACTIONS.REMOVE_POST:
+
+            break;
+        case POSTS_ACTIONS.EDIT_POST:
+
+            break;
+        case POSTS_ACTIONS.VOTE_POST:
+
+            break;
+        case POSTS_ACTIONS.GET_POST:
+
+            break;
+        default:
+            return state
+    }
 }
 
 export default posts;

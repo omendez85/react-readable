@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Link, withRouter } from 'react-router-dom';
-
-import * as Api from './utils/api';
+import _ from 'lodash';
 
 import Header from './components/header';
 import Categories from './components/categories';
 import ListPosts from './components/listPosts';
 import SortBy from './components/sortBy';
+import Post from './components/post';
 
 import * as commentActions from './actions/comments';
 import * as postActions from './actions/posts';
@@ -22,34 +22,45 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Api.getCategories().then((categories) => {
-        this.setState({ categories });
-    });
 
-    Api.getPosts().then((posts) => {
-        console.log(posts);
-        this.setState({ posts });
-    });
+
+      postActions.getInitListPosts();
+    // Api.getCategories().then((categories) => {
+    //     this.setState({ categories });
+    // });
+    //
+    // Api.getPosts().then((posts) => {
+    //     //this.setState({ posts: _.orderBy(posts, ['timestamp'], ['desc']) });
+    //     dispatch(postActions.initPosts(posts))
+    // });
+
   }
 
   onSortPostBy  = (event) => {
-      let option = event.target.value;
+      let option = parseInt(event.target.value);
+      let order, direction;
       switch (option) {
           case 1:
-                //return this.state.posts.filter(
+                order = 'timestamp';
+                direction = 'desc';
               break;
           case 2:
-                //return this.state.posts.filter(
+                order = 'timestamp';
+                direction = 'asc';
               break;
           case 3:
-                //return this.state.posts.filter(
+                order = 'voteScore';
+                direction = 'desc';
               break;
           case 4:
-                //return this.state.posts.filter(
+                order = 'voteScore';
+                direction = 'asc';
               break;
           default:
-                //return this.state.posts.filter(
+                order = 'timestamp';
+                direction = 'desc';
       }
+      this.setState({ posts: _.orderBy(this.state.posts, [order], [direction]) });
   }
 
   render() {
@@ -62,7 +73,7 @@ class App extends Component {
             <div className="o-grid--full">
                 <Categories categories={this.state.categories}/>
                 <SortBy onSortPostBy={this.onSortPostBy}/>
-                <ListPosts posts={this.state.posts}/>
+                <ListPosts posts={this.props.posts}/>
             </div>
         )}/>
 
@@ -70,9 +81,8 @@ class App extends Component {
             <div>Some: {this.props.categoryId}</div>
         )}/>
 
-        <Route exact path="/post" render={() =>(
-            <div>POST ID</div>
-        )}/>
+
+        <Route path="/post/:postId" component={Post} />
 
       </div>
     );
