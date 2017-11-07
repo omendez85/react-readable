@@ -49,9 +49,8 @@ export const createPost = (dataPost) =>
 //    USAGE:
 //      Get the details of a single post
 export const getPostById = (postId) =>
-  fetch(`${api}/${postId}/posts`, { headers })
+  fetch(`${api}/posts/${postId}`, { headers })
     .then(res => res.json())
-    .then(data => data.categories);
 
 //  POST /posts/:id
 //    USAGE:

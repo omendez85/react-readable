@@ -1,22 +1,20 @@
 import * as COMMENTS_ACTIONS from '../actions/comments';
 
-// const initialCommentState = {
-//     comments: []
-//     // id: null,
-//     // parentId: null,
-//     // timestamp: null,
-//     // body: null,
-//     // author: null,
-//     // voteScore: null,
-//     // deleted: null,
-//     // parentDeleted: null
-// }
-const initialCommentState = [];
+const initialCommentState = {
+    listComments: [],
+    currentComment: {}
+    // id: null,
+    // timestamp: null,
+    // title: null,
+    // body: null,
+    // author: null,
+    // category: null,
+    // voteScore: null,
+    // deleted: null
+}
 
 const comments = function (state = initialCommentState, action) {
     switch (action.type) {
-        case COMMENTS_ACTIONS.INIT_COMMENTS:
-            return [...action.data]
         case COMMENTS_ACTIONS.ADD_COMMENT:
 
             break;

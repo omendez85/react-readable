@@ -1,18 +1,10 @@
 import * as Api from '../utils/api';
 
-export const INIT_COMMENTS = 'INIT_COMMENTS'
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const GET_COMMENT = 'GET_COMMENT'
-
-export function initComments () {
-  return {
-    type: INIT_COMMENTS,
-    comments: []
-  }
-}
 
 export function addComment ({ parentId, body, author }) {
   return {

@@ -5,7 +5,7 @@ export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
-export const GET_POST = 'GET_POST'
+export const SET_CURRENT_POST = 'SET_CURRENT_POST'
 
 export function initPosts (posts) {
     return {
@@ -16,17 +16,12 @@ export function initPosts (posts) {
 
 export function getInitListPosts() {
     return dispatch => {
-        console.log(1111);
-        Api.getCategories()
+        Api.getPosts()
             .then((posts) => {
-                console.log(posts);
                 dispatch(initPosts(posts));
             });
       };
 }
-
-
-
 
 export function addPost ({ title, body, author, category }) {
   return {
@@ -64,12 +59,26 @@ export function votePost ({ id }) {
 }
 
 
-export function getPost ({ id }) {
+export function setCurrentPost (post) {
   return {
-    type: GET_POST,
-    id
+    type: SET_CURRENT_POST,
+    data: post
   }
 }
+
+// export function getPostApi (postId) {
+//     return Api.getPostById(postId).then( ;
+// }
+
+export function getPostApi(postId) {
+    return dispatch => {
+        Api.getPostById(postId)
+            .then((post) => {
+                dispatch(setCurrentPost(post));
+            });
+      };
+}
+
 /*
 Posts:
 Posts are the building blocks of your application. Posts include:

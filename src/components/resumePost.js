@@ -12,7 +12,6 @@ const ResumePost = (props) => {
                 <h2 className="c-heading">
                     <Link
                         to={`/post/${props.post.id}`}
-                        params={{ postId: "1212" }}
                         className="c-link c-link--info">
                         {props.post.title}
                     </Link>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 import _ from 'lodash';
+import * as Api from './utils/api';
 
 import Header from './components/header';
 import Categories from './components/categories';
@@ -23,16 +24,11 @@ class App extends Component {
 
   componentDidMount() {
 
+    Api.getCategories().then((categories) => {
+        this.setState({ categories });
+    });
 
-      postActions.getInitListPosts();
-    // Api.getCategories().then((categories) => {
-    //     this.setState({ categories });
-    // });
-    //
-    // Api.getPosts().then((posts) => {
-    //     //this.setState({ posts: _.orderBy(posts, ['timestamp'], ['desc']) });
-    //     dispatch(postActions.initPosts(posts))
-    // });
+    this.props.postActions.getInitListPosts();
 
   }
 
@@ -60,20 +56,26 @@ class App extends Component {
                 order = 'timestamp';
                 direction = 'desc';
       }
-      this.setState({ posts: _.orderBy(this.state.posts, [order], [direction]) });
+      this.setState({ posts: _.orderBy(this.state.posts.listPosts, [order], [direction]) });
+  }
+
+  getPostData = (postId) => {
+      return this.props.posts.listPosts.filter( post => post.id === postId);
+  }
+
+  getCommentsPost = (postId) => {
+      return this.props.posts.listPosts.filter( post => post.id === postId);
   }
 
   render() {
     return (
       <div className="App">
-
         <Header/>
-
         <Route exact path='/' render={() => (
             <div className="o-grid--full">
                 <Categories categories={this.state.categories}/>
                 <SortBy onSortPostBy={this.onSortPostBy}/>
-                <ListPosts posts={this.props.posts}/>
+                <ListPosts posts={this.props.posts.listPosts} onSetPost={this.onSetPost}/>
             </div>
         )}/>
 
@@ -81,8 +83,7 @@ class App extends Component {
             <div>Some: {this.props.categoryId}</div>
         )}/>
 
-
-        <Route path="/post/:postId" component={Post} />
+        <Route path="/post/:postId" render={(props) => ( <Post postData={this.getPostData(props.match.params.postId)}/> ) }/>
 
       </div>
     );

@@ -1,23 +1,24 @@
 import * as POSTS_ACTIONS from '../actions/posts';
 
-// const posts = {
-//     posts: []
-//     // id: null,
-//     // timestamp: null,
-//     // title: null,
-//     // body: null,
-//     // author: null,
-//     // category: null,
-//     // voteScore: null,
-//     // deleted: null
-// }
+const initialPostsState = {
+    listPosts: [],
+    currentPost: {}
+    // id: null,
+    // timestamp: null,
+    // title: null,
+    // body: null,
+    // author: null,
+    // category: null,
+    // voteScore: null,
+    // deleted: null
+}
 
-const initialPostsState = [];
+//const initialPostsState = [];
 
 const posts = function (state = initialPostsState, action) {
     switch (action.type) {
         case POSTS_ACTIONS.INIT_POSTS:
-                return [...action.data]
+                return  { ...state, listPosts: [...action.data] }
         case POSTS_ACTIONS.ADD_POST:
 
             break;
@@ -30,8 +31,8 @@ const posts = function (state = initialPostsState, action) {
         case POSTS_ACTIONS.VOTE_POST:
 
             break;
-        case POSTS_ACTIONS.GET_POST:
-
+        case POSTS_ACTIONS.SET_CURRENT_POST:
+                return { ...state, currentPost: action.data }
             break;
         default:
             return state
