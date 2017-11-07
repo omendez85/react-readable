@@ -60,7 +60,6 @@ export const getPostById = (postId) =>
 export const votePost = (postId, postParams) =>
   fetch(`${api}/posts/${postId}`, { method: 'post', headers, body: JSON.stringify(postParams)})
     .then(res => res.json())
-    .then(data => data.categories);
 
 //  PUT /posts/:id
 //    USAGE:
@@ -124,11 +123,9 @@ export const getCommentById = (commentId) =>
 //  POST /comments/:id
 //    USAGE:
 //      Used for voting on a comment.
-export const voteComment = (commentId) =>
-  fetch(`${api}/comments/${commentId}`, { method: 'POST', headers })
-    .then(res => res.json())
-    .then(data => data.categories);
-
+export const voteComment = (commentId, commentParams) =>
+  fetch(`${api}/comments/${commentId}`, { method: 'post', headers, body: JSON.stringify(commentParams)})
+    .then(res => res.json());
 
 //  PUT /comments/:id
 //    USAGE:

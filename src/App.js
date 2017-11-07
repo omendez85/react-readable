@@ -57,8 +57,8 @@ class App extends Component {
         return this.props.posts.listPosts.filter( post => post.id === postId);
     }
 
-    getCommentsPost = (postId) => {
-        return this.props.posts.listPosts.filter( post => post.id === postId);
+    votePost = (postId, typeVote) => {
+        this.props.postActions.votePosts(postId, typeVote);
     }
 
     render() {
@@ -77,7 +77,9 @@ class App extends Component {
                     <div>Some: {this.props.categoryId}</div>
                 )}/>
 
-                <Route path="/post/:postId" render={(props) => ( <Post postData={this.getPostData(props.match.params.postId)}/> ) }/>
+                <Route path="/post/:postId" render={(props) => (
+                    <Post postData={this.getPostData(props.match.params.postId)} onVotePost={this.votePost}/>
+                ) }/>
 
                 <Route path="/post/edit/:postId" render={(props) => ( <EditPost postData={this.getPostData(props.match.params.postId)}/> ) }/>
 

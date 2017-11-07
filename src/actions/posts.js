@@ -7,13 +7,14 @@ export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const SET_CURRENT_POST = 'SET_CURRENT_POST'
 
+/******** INIT POSTS **************/
+
 export function initPosts (posts) {
     return {
         type: INIT_POSTS,
         data: posts
     }
 }
-
 export function getInitListPosts() {
     return dispatch => {
         Api.getPosts()
@@ -22,6 +23,31 @@ export function getInitListPosts() {
             });
       };
 }
+
+
+/******** VOTE POST **************/
+export function votePostAction (post) {
+    return {
+        type: VOTE_POST,
+        data: post
+    }
+}
+
+export function votePosts(postId, voteValue) {
+
+    return dispatch => {
+        Api.votePost(postId, voteValue)
+            .then( res => {
+                dispatch(votePostAction(res));
+            }).the;
+      };
+}
+
+
+
+
+
+
 
 export function addPost ({ title, body, author, category }) {
   return {
@@ -51,33 +77,10 @@ export function editPost ({ id, title, body, author, category }) {
   }
 }
 
-export function votePost ({ id }) {
-  return {
-    type: VOTE_POST,
-    id
-  }
-}
 
 
-export function setCurrentPost (post) {
-  return {
-    type: SET_CURRENT_POST,
-    data: post
-  }
-}
 
-// export function getPostApi (postId) {
-//     return Api.getPostById(postId).then( ;
-// }
 
-export function getPostApi(postId) {
-    return dispatch => {
-        Api.getPostById(postId)
-            .then((post) => {
-                dispatch(setCurrentPost(post));
-            });
-      };
-}
 
 /*
 Posts:

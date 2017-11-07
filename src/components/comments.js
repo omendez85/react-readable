@@ -7,8 +7,12 @@ import * as commentActions from '../actions/comments';
 
 class Comments extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
       this.props.commentActions.getCommentsPost(this.props.postId);
+  }
+
+  voteComment = (commentId, typeVote) => {
+      this.props.commentActions.voteComment(commentId, typeVote);
   }
 
   render() {
@@ -17,14 +21,14 @@ class Comments extends Component {
             <h3 className="c-heading u-super">Comments</h3>
             <ul className="c-list">
                 { this.props.comments.listComments.map( (comment, i) => (
-                    <li className="c-list__item">
+                    <li className="c-list__item comment-item" key={i}>
                         By: {comment.author} <Link
                             to={`/comment/edit/${comment.id}`}
                             className="c-link c-link--info">Edit</Link><br/>
                         Votes: {comment.voteScore}<br/>
                         <span className="c-tags__container">
-                            <button type="button" className="c-button c-button--brand">&#x1f44d;</button>
-                            <button type="button" className="c-button c-button--brand">	&#128078;</button>
+                            <button type="button" onClick={ () => this.voteComment(comment.id, 'upVote') } className="c-button c-button--brand">&#x1f44d;</button>
+                            <button type="button" onClick={ () => this.voteComment(comment.id, 'downVote') } className="c-button c-button--brand">	&#128078;</button>
                         </span>
                         <p>{comment.body}</p>
 
@@ -49,7 +53,7 @@ function mapDispatchToProps (dispatch) {
 }
 
 // export default App;
-export default withRouter(connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Comments))
+)(Comments)

@@ -1,19 +1,8 @@
 import * as POSTS_ACTIONS from '../actions/posts';
 
 const initialPostsState = {
-    listPosts: [],
-    currentPost: {}
-    // id: null,
-    // timestamp: null,
-    // title: null,
-    // body: null,
-    // author: null,
-    // category: null,
-    // voteScore: null,
-    // deleted: null
+    listPosts: []
 }
-
-//const initialPostsState = [];
 
 const posts = function (state = initialPostsState, action) {
     switch (action.type) {
@@ -29,10 +18,13 @@ const posts = function (state = initialPostsState, action) {
 
             break;
         case POSTS_ACTIONS.VOTE_POST:
-
-            break;
-        case POSTS_ACTIONS.SET_CURRENT_POST:
-                return { ...state, currentPost: action.data }
+                let newValues = state.listPosts.map( el => {
+                    if ( el.id === action.data.id) {
+                        return action.data;
+                    }
+                    return el;
+                });
+                return { ...state, listPosts: [...newValues] }
             break;
         default:
             return state

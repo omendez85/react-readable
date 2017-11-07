@@ -8,7 +8,7 @@ const ResumePost = (props) => {
     let resumeBody = (props.post.body.length >= 100) ? props.post.body.substring(0,100) : props.post.body;
     return (
         <div className="o-grid__cell o-grid__cell--width-100 o-grid__cell--width-50@small o-grid__cell--width-33@medium">
-            <div className="o-grid-text">
+            <div className="card-post o-grid-text">
                 <h2 className="c-heading">
                     <Link
                         to={`/post/${props.post.id}`}

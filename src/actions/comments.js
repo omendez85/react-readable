@@ -6,6 +6,42 @@ export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
 export const GET_COMMENTS = 'GET_COMMENTS'
 
+/********** GET AND SET COMMENTS FOR POST ************/
+export function setComments (comments) {
+    return {
+        type: GET_COMMENTS,
+        data: comments
+    }
+}
+
+export function getCommentsPost(postId) {
+    return dispatch => {
+        Api.getCommentsByPostId(postId)
+            .then((res) => {
+                dispatch(setComments(res));
+            });
+      };
+}
+
+/********** GET AND SET COMMENTS FOR POST ************/
+
+export function voteCommentAction (comment) {
+    return {
+        type: VOTE_COMMENT,
+        data: comment
+    }
+}
+
+export function voteComment(commentId, voteValue) {
+    return dispatch => {
+        Api.voteComment(commentId, voteValue)
+            .then((res) => {
+                dispatch(voteCommentAction(res));
+            });
+      };
+}
+
+
 export function addComment ({ parentId, body, author }) {
   return {
     type: ADD_COMMENT,
@@ -31,28 +67,10 @@ export function editComment ({ id, body, author }) {
   }
 }
 
-export function voteComment ({ id }) {
-  return {
-    type: VOTE_COMMENT,
-    id
-  }
-}
 
-export function setComments (comments) {
-  return {
-    type: GET_COMMENTS,
-    data: comments
-  }
-}
 
-export function getCommentsPost(postId) {
-    return dispatch => {
-        Api.getCommentsByPostId(postId)
-            .then((res) => {
-                dispatch(setComments(res));
-            });
-      };
-}
+
+
 
 /*
 comments:
