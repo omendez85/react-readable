@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-const AddComment = ( {postData} ) => {
+const AddComment = ( ) => {
     return (
         <div className="o-grid__cell">
-        <form>
-            <label>
-                Name
-                <input
-                name="author"
-                type="checkbox"
-                checked={this.state.isGoing}
-                onChange={this.handleInputChange} />
-            </label>
-            <br />
-            <label>
-                Number of guests:
-                <input
-                name="numberOfGuests"
-                type="number"
-                value={this.state.numberOfGuests}
-                onChange={this.handleInputChange} />
+            <h3 className="c-heading u-super">Add comment</h3>
+            <form>
+                <label>
+                    Name
+                    <input className="c-field" name="author" type="text"/>
                 </label>
+                <br />
+                <label>
+                    Comment:
+                    <textarea className="c-field" name="numberOfGuests" ></textarea>
+                </label>
+                <button type="button" className="c-button c-button--success">Submit</button>
+
             </form>
         </div>
     )

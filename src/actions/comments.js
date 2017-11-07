@@ -4,7 +4,7 @@ export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const EDIT_COMMENT = 'EDIT_COMMENT'
 export const VOTE_COMMENT = 'VOTE_COMMENT'
-export const GET_COMMENT = 'GET_COMMENT'
+export const GET_COMMENTS = 'GET_COMMENTS'
 
 export function addComment ({ parentId, body, author }) {
   return {
@@ -38,11 +38,20 @@ export function voteComment ({ id }) {
   }
 }
 
-export function getComment ({ id }) {
+export function setComments (comments) {
   return {
-    type: GET_COMMENT,
-    id
+    type: GET_COMMENTS,
+    data: comments
   }
+}
+
+export function getCommentsPost(postId) {
+    return dispatch => {
+        Api.getCommentsByPostId(postId)
+            .then((res) => {
+                dispatch(setComments(res));
+            });
+      };
 }
 
 /*

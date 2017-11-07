@@ -17,7 +17,7 @@ export function initPosts (posts) {
 export function getInitListPosts() {
     return dispatch => {
         Api.getPosts()
-            .then((posts) => {
+            .then( posts => {
                 dispatch(initPosts(posts));
             });
       };

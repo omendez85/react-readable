@@ -1,16 +1,7 @@
 import * as COMMENTS_ACTIONS from '../actions/comments';
 
 const initialCommentState = {
-    listComments: [],
-    currentComment: {}
-    // id: null,
-    // timestamp: null,
-    // title: null,
-    // body: null,
-    // author: null,
-    // category: null,
-    // voteScore: null,
-    // deleted: null
+    listComments: []
 }
 
 const comments = function (state = initialCommentState, action) {
@@ -27,9 +18,8 @@ const comments = function (state = initialCommentState, action) {
         case COMMENTS_ACTIONS.VOTE_COMMENT:
 
             break;
-        case COMMENTS_ACTIONS.GET_COMMENT:
-
-            break;
+        case COMMENTS_ACTIONS.GET_COMMENTS:
+                return  { ...state, listComments: [...action.data] }
         default:
             return state
     }

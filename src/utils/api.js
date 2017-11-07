@@ -94,9 +94,8 @@ export const deletePost = (postId) =>
 //    USAGE:
 //      Get all the comments for a single post
 export const getCommentsByPostId = (postId) =>
-  fetch(`${api}/${postId}/comments`, { headers })
-    .then(res => res.json())
-    .then(data => data.categories);
+  fetch(`${api}/posts/${postId}/comments`, { headers })
+    .then(res => res.json());
 
 //  POST /comments
 //    USAGE:

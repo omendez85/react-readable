@@ -34,6 +34,12 @@ const Post = ( {postData} ) => {
                 <p className="c-paragraph">{post.body}</p>
             </div>
 
+            <div className="o-grid-text">
+                <Comments postId={post.id} />
+            </div>
+            <div className="o-grid-text">
+                <AddComment />
+            </div>
         </div>
     );
 };
