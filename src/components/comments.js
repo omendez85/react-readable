@@ -27,9 +27,7 @@ class Comments extends Component {
             this.props.commentActions.addComment(fieldsValues);
             return;
         }
-
         this.setState({ showErrorForm: true });
-
     }
 
     render() {

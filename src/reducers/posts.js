@@ -5,6 +5,7 @@ const initialPostsState = {
 }
 
 const posts = function (state = initialPostsState, action) {
+    let newValues;
     switch (action.type) {
         case POSTS_ACTIONS.INIT_POSTS:
                 return  { ...state, listPosts: [...action.data] }
@@ -18,7 +19,17 @@ const posts = function (state = initialPostsState, action) {
 
             break;
         case POSTS_ACTIONS.VOTE_POST:
-                let newValues = state.listPosts.map( el => {
+                newValues = state.listPosts.map( el => {
+                    if ( el.id === action.data.id) {
+                        return action.data;
+                    }
+                    return el;
+                });
+                return { ...state, listPosts: [...newValues] }
+            break;
+            break;
+        case POSTS_ACTIONS.NEW_COMMENT_POST:
+                newValues = state.listPosts.map( el => {
                     if ( el.id === action.data.id) {
                         return action.data;
                     }

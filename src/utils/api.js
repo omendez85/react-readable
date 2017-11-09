@@ -6,7 +6,8 @@ const headers = {
 }
 
 const headersEdit = {
-  'Content-Type': 'application/json'
+    ...headers,
+    'Content-Type': 'application/json'
 }
 
 // GET /categories
@@ -62,7 +63,7 @@ export const getPostById = (postId) =>
 //    PARAMS:
 //      option - String: Either "upVote" or "downVote"
 export const votePost = (postId, postParams) =>
-  fetch(`${api}/posts/${postId}`, { method: 'post', headers, body: JSON.stringify(postParams)})
+  fetch(`${api}/posts/${postId}`, { method: 'post', headers: headersEdit, body: JSON.stringify(postParams)})
     .then(res => res.json())
 
 //  PUT /posts/:id
@@ -111,7 +112,7 @@ export const getCommentsByPostId = (postId) =>
 //      author: String
 //      parentId: Should match a post id in the database.
 export const addComment = (comment) =>
-  fetch(`${api}/comments`, { method: 'POST', headers: { ...headers, ...headersEdit }, body: JSON.stringify(comment) })
+  fetch(`${api}/comments`, { method: 'POST', headers: headersEdit, body: JSON.stringify(comment) })
     .then(res => res.json());
 
 
@@ -127,7 +128,7 @@ export const getCommentById = (commentId) =>
 //    USAGE:
 //      Used for voting on a comment.
 export const voteComment = (commentId, commentParams) =>
-  fetch(`${api}/comments/${commentId}`, { method: 'post', headers, body: JSON.stringify(commentParams)})
+  fetch(`${api}/comments/${commentId}`, { method: 'post', headers: headersEdit, body: JSON.stringify(commentParams)})
     .then(res => res.json());
 
 //  PUT /comments/:id

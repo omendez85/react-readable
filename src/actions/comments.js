@@ -34,8 +34,9 @@ export function voteCommentAction (comment) {
 }
 
 export function voteComment(commentId, voteValue) {
+    let vote = { option: voteValue}
     return dispatch => {
-        Api.voteComment(commentId, voteValue)
+        Api.voteComment(commentId, vote)
             .then((res) => {
                 dispatch(voteCommentAction(res));
             });

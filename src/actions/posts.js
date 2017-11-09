@@ -6,6 +6,7 @@ export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const SET_CURRENT_POST = 'SET_CURRENT_POST'
+export const NEW_COMMENT_POST = 'NEW_COMMENT_POST'
 
 /******** INIT POSTS **************/
 
@@ -34,17 +35,33 @@ export function votePostAction (post) {
 }
 
 export function votePosts(postId, voteValue) {
-
+    let vote = { option: voteValue}
     return dispatch => {
-        Api.votePost(postId, voteValue)
+        Api.votePost(postId, vote)
             .then( res => {
                 dispatch(votePostAction(res));
-            }).the;
+            });
       };
 }
 
+/**************** UPDATE NEW COMMENT POST VALUE *******/
 
+export function updateCountCommentsPostAction (post) {
+    return {
+        type: NEW_COMMENT_POST,
+        data: post
+    }
+}
 
+export function updateCountCommentsPost(postId, voteValue) {
+
+    return dispatch => {
+        Api.getPostById(postId)
+            .then( res => {
+                dispatch(updateCountCommentsPostAction(res));
+            }).the;
+      };
+}
 
 
 
