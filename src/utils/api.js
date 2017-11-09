@@ -72,9 +72,8 @@ export const votePost = (postId, postParams) =>
 //      title - String
 //      body - String
 export const editPost = (postId, postParams) =>
-  fetch(`${api}/posts/${postId}`, { method: 'put', headers, body: JSON.stringify(postParams)})
-    .then(res => res.json())
-    .then(data => data.categories);
+  fetch(`${api}/posts/${postId}`, { method: 'put', headers: headersEdit, body: JSON.stringify(postParams)})
+    .then(res => res.json());
 
 //  DELETE /posts/:id
 //    USAGE:

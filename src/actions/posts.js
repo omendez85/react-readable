@@ -60,7 +60,7 @@ export function updateCountCommentsPost(postId, voteValue) {
         Api.getPostById(postId)
             .then( res => {
                 dispatch(updateCountCommentsPostAction(res));
-            }).the;
+            });
       };
 }
 
@@ -80,11 +80,27 @@ export function addPost (newPost) {
         Api.createPost(newPost)
             .then( res => {
                 dispatch(addPostAction(res));
-            }).the;
+            });
       };
 }
 
+/*************** EDIT POST *************/
+export function editPostAction (post) {
+    return {
+        type: EDIT_POST,
+        data: post
+    }
+}
 
+export function editPost (post) {
+    return dispatch => {
+        Api.editPost(post.postId, post)
+            .then( res => {
+
+                dispatch(editPostAction(res));
+            });
+      };
+}
 
 
 
@@ -100,16 +116,6 @@ export function removePost ({ id }) {
   }
 }
 
-export function editPost ({ id, title, body, author, category }) {
-  return {
-    type: EDIT_POST,
-    id,
-    title,
-    body,
-    author,
-    category
-  }
-}
 
 
 

@@ -18,7 +18,13 @@ const posts = function (state = initialPostsState, action) {
 
             break;
         case POSTS_ACTIONS.EDIT_POST:
-
+                newValues = state.listPosts.map( el => {
+                    if ( el.id === action.data.id) {
+                        return action.data;
+                    }
+                    return el;
+                });
+                return { ...state, listPosts: [...newValues] }
             break;
         case POSTS_ACTIONS.VOTE_POST:
                 newValues = state.listPosts.map( el => {

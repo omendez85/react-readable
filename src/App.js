@@ -65,7 +65,7 @@ class App extends Component {
         this.props.postActions.votePosts(postId, typeVote);
     }
 
-    newPost = (event) => {
+    submitNewPost = (event) => {
         event.preventDefault();
         const fieldsValues = serializeForm(event.target, {hash: true});
 
@@ -80,6 +80,19 @@ class App extends Component {
         this.setState({ showErrorFormPost: true });
     }
 
+    submitEditPost = (event) => {
+        event.preventDefault();
+        const fieldsValues = serializeForm(event.target, {hash: true});
+
+        if ( fieldsValues.title !== undefined &&
+             fieldsValues.body !== undefined) {
+             this.props.postActions.editPost(fieldsValues);
+             document.querySelector('.editPostForm').reset();
+             return;
+        }
+        this.setState({ showErrorFormPost: true });
+    }
+
     render() {
     return (
             <div className="App">
@@ -89,7 +102,7 @@ class App extends Component {
                         <Categories categories={this.props.categories.listCategories}/>
                         <SortBy onSortPostBy={this.onSortPostBy}/>
                         <ListPosts posts={this.props.posts.listPosts} onSetPost={this.onSetPost}/>
-                        <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.newPost} />
+                        <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.submitNewPost} />
                     </div>
                 )}/>
 
@@ -101,7 +114,9 @@ class App extends Component {
                     <Post postData={this.getPostData(props.match.params.postId)} onVotePost={this.votePost}/>
                 ) }/>
 
-                <Route path="/post/edit/:postId" render={(props) => ( <EditPost postData={this.getPostData(props.match.params.postId)}/> ) }/>
+                <Route path="/post/edit/:postId" render={(props) => (
+                    <EditPost postData={this.getPostData(props.match.params.postId)} onSubmitEditPost={this.submitEditPost} onShowErrorMsg={this.state.showErrorFormPost}/>
+                )}/>
 
             </div>
         );

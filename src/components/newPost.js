@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ListCategories from './listCategories';
 
 const newPost = (props) => {
     return (
         <div className="o-grid__cell">
             <h3 className="c-heading u-super">Add Post</h3>
-            <form onSubmit={props.onSubmitPost} className='newPostForm'>
+            <form onSubmit={props.onSubmitPost} className='editPostForm'>
                 <span className={`errorMessage c-link c-link--error ${props.showError ? 'show' : ''}`}>Please fill all the fields</span>
                 <label>
                     Title
@@ -15,15 +15,7 @@ const newPost = (props) => {
                     Author
                     <input className="c-field" name="author" type="text"/>
                 </label>
-                <div className="o-form-element">
-                    <label className="c-label">Category:
-                        <select className="c-field" name="category">
-                            { props.categories.map( (category, i) => (
-                                <option value={category.name} key={i}>{category.name}</option>
-                            ))}
-                        </select>
-                    </label>
-                </div>
+                <ListCategories />
                 <label>
                     Post:
                     <textarea className="c-field" name="body" ></textarea>

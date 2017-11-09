@@ -1,28 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import ListCategories from './listCategories';
 
-const EditPost = ( {postData} ) => {
+const EditPost = ( props ) => {
 
-    if(!postData.length) return null;
+    if(!props.postData.length) return null;
 
-    let post = postData[0];
+    let post = props.postData[0];
     let date = new Date(post.timestamp);
     date = date.toGMTString();
     return (
         <div className="o-grid__cell">
             <div className="o-grid-text">
+                <form onSubmit={props.onSubmitEditPost}>
+                    <input name="postId" type="hidden" value={post.id}/>
 
-                <form>
+                    <span className={`errorMessage c-link c-link--error ${props.onShowErrorMsg ? 'show' : ''}`}>Please fill all the fields</span>
+
                     <label>
                         Title
-                        <input className="c-field" name="author" type="text" value={post.title}/>
+                        <input className="c-field" name="author" type="text" defaultValue={post.title}/>
                     </label>
-                    <br />
+                    <ListCategories optionSelected={post.category} />
                     <label>
                         Body:
-                        <textarea className="c-field" name="numberOfGuests">{post.body}</textarea>
+                        <textarea className="c-field" name="numberOfGuests" defaultValue={post.body}></textarea>
                     </label>
-                    <button type="button" className="c-button c-button--success">Save</button>
+                    <button type="submit" className="c-button c-button--success">Save</button>
                 </form>
             </div>
         </div>
