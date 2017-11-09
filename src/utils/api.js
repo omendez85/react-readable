@@ -5,6 +5,10 @@ const headers = {
   'Authorization': 'whatever-you-want'
 }
 
+const headersEdit = {
+  'Content-Type': 'application/json'
+}
+
 // GET /categories
 //    USAGE:
 //      Get all of the categories available for the app. List is found in categories.js.
@@ -107,9 +111,8 @@ export const getCommentsByPostId = (postId) =>
 //      author: String
 //      parentId: Should match a post id in the database.
 export const addComment = (comment) =>
-  fetch(`${api}/comments`, { method: 'POST', headers, body: JSON.stringify(comment) })
-    .then(res => res.json())
-    .then(data => data.categories);
+  fetch(`${api}/comments`, { method: 'POST', headers: { ...headers, ...headersEdit }, body: JSON.stringify(comment) })
+    .then(res => res.json());
 
 
 //  GET /comments/:id

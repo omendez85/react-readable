@@ -11,6 +11,7 @@ import ListPosts from './components/listPosts';
 import SortBy from './components/sortBy';
 import Post from './components/post';
 import EditPost from './components/editPost';
+import OverlayLoading from './components/overlayLoading';
 
 import * as commentActions from './actions/comments';
 import * as postActions from './actions/posts';
@@ -82,6 +83,8 @@ class App extends Component {
                 ) }/>
 
                 <Route path="/post/edit/:postId" render={(props) => ( <EditPost postData={this.getPostData(props.match.params.postId)}/> ) }/>
+
+                
 
             </div>
         );

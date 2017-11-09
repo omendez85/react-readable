@@ -7,7 +7,9 @@ const initialCommentState = {
 const comments = function (state = initialCommentState, action) {
     switch (action.type) {
         case COMMENTS_ACTIONS.ADD_COMMENT:
-
+                return { ...state,
+                        listComments: [...state.listComments, action.data]
+                }
             break;
         case COMMENTS_ACTIONS.REMOVE_COMMENT:
 

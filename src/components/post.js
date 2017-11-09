@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import AddComment from './addComment';
 import Comments from './comments';
 
 const Post = ( {postData, onVotePost} ) => {
@@ -30,12 +29,8 @@ const Post = ( {postData, onVotePost} ) => {
                 <p className="c-paragraph">{post.body}</p>
             </div>
 
-            <div className="o-grid-text">
-                <Comments postId={post.id} />
-            </div>
-            <div className="o-grid-text">
-                <AddComment />
-            </div>
+            <Comments postId={post.id} />
+
         </div>
     );
 };

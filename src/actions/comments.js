@@ -1,4 +1,5 @@
 import * as Api from '../utils/api';
+import uuid from 'uuid/v4';
 
 export const ADD_COMMENT = 'ADD_COMMENT'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
@@ -41,15 +42,30 @@ export function voteComment(commentId, voteValue) {
       };
 }
 
+/************** ADD COMMENTS POST *****************/
 
-export function addComment ({ parentId, body, author }) {
-  return {
-    type: ADD_COMMENT,
-    parentId,
-    body,
-    author
-  }
+export function addCommentAction (comment) {
+    return {
+        type: ADD_COMMENT,
+        data: comment
+    }
 }
+
+export function addComment (comment) {
+
+    comment.id = uuid();
+    comment.timestamp = new Date().getTime();
+    return dispatch => {
+        Api.addComment(comment)
+            .then((res) => {
+                dispatch(addCommentAction(res));
+            });
+      };
+}
+
+
+
+
 
 export function removeComment ({ id }) {
   return {
