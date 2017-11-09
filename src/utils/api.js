@@ -46,9 +46,8 @@ export const getPosts = () =>
 //      author - String
 //      category: Any of the categories listed in categories.js. Feel free to extend this list as you desire.
 export const createPost = (dataPost) =>
-  fetch(`${api}/posts`, { method: 'post', headers, body: JSON.stringify( dataPost ) })  // body: JSON.stringify({a: 7, str: 'Some string: &=&'})
-    .then(res => res.json())
-    .then(data => data.categories);
+  fetch(`${api}/posts`, { method: 'post', headers: headersEdit, body: JSON.stringify( dataPost ) })  // body: JSON.stringify({a: 7, str: 'Some string: &=&'})
+    .then(res => res.json());
 
 //  GET /posts/:id
 //    USAGE:
@@ -121,8 +120,7 @@ export const addComment = (comment) =>
 //      Get the details for a single comment
 export const getCommentById = (commentId) =>
   fetch(`${api}/comments/${commentId}`, { headers })
-    .then(res => res.json())
-    .then(data => data.categories);
+    .then(res => res.json());
 
 //  POST /comments/:id
 //    USAGE:

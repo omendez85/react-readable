@@ -1,4 +1,5 @@
 import * as Api from '../utils/api';
+import uuid from 'uuid/v4';
 
 export const INIT_POSTS = 'INIT_POSTS'
 export const ADD_POST = 'ADD_POST'
@@ -63,18 +64,34 @@ export function updateCountCommentsPost(postId, voteValue) {
       };
 }
 
+/************* NEW POST ***************/
 
-
-
-export function addPost ({ title, body, author, category }) {
-  return {
-    type: ADD_POST,
-    title,
-    body,
-    author,
-    category
-  }
+export function addPostAction (post) {
+    return {
+        type: ADD_POST,
+        data: post
+    }
 }
+
+export function addPost (newPost) {
+    newPost.id = uuid();
+    newPost.timestamp = new Date().getTime();
+    return dispatch => {
+        Api.createPost(newPost)
+            .then( res => {
+                dispatch(addPostAction(res));
+            }).the;
+      };
+}
+
+
+
+
+
+
+
+
+
 
 export function removePost ({ id }) {
   return {

@@ -10,7 +10,9 @@ const posts = function (state = initialPostsState, action) {
         case POSTS_ACTIONS.INIT_POSTS:
                 return  { ...state, listPosts: [...action.data] }
         case POSTS_ACTIONS.ADD_POST:
-
+                return { ...state,
+                        listPosts: [...state.listPosts, action.data]
+                }
             break;
         case POSTS_ACTIONS.REMOVE_POST:
 

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Route, Link, withRouter } from 'react-router-dom';
 import _ from 'lodash';
 import * as Api from './utils/api';
+import serializeForm from 'form-serialize';
 
 import Header from './components/header';
 import Categories from './components/categories';
@@ -12,6 +13,7 @@ import SortBy from './components/sortBy';
 import Post from './components/post';
 import EditPost from './components/editPost';
 import OverlayLoading from './components/overlayLoading';
+import NewPost from './components/newPost';
 
 import * as commentActions from './actions/comments';
 import * as postActions from './actions/posts';
@@ -19,7 +21,8 @@ import * as categoriesActions from './actions/categories';
 
 class App extends Component {
     state = {
-        sortBy: '1'
+        sortBy: '1',
+        showErrorFormPost: false
     }
 
     componentDidMount() {
@@ -62,6 +65,21 @@ class App extends Component {
         this.props.postActions.votePosts(postId, typeVote);
     }
 
+    newPost = (event) => {
+        event.preventDefault();
+        const fieldsValues = serializeForm(event.target, {hash: true});
+
+        if ( fieldsValues.title !== undefined &&
+             fieldsValues.body !== undefined &&
+             fieldsValues.author !== undefined &&
+             fieldsValues.category !== undefined) {
+             this.props.postActions.addPost(fieldsValues);
+             document.querySelector('.newPostForm').reset();
+             return;
+        }
+        this.setState({ showErrorFormPost: true });
+    }
+
     render() {
     return (
             <div className="App">
@@ -71,6 +89,7 @@ class App extends Component {
                         <Categories categories={this.props.categories.listCategories}/>
                         <SortBy onSortPostBy={this.onSortPostBy}/>
                         <ListPosts posts={this.props.posts.listPosts} onSetPost={this.onSetPost}/>
+                        <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.newPost} />
                     </div>
                 )}/>
 
@@ -83,8 +102,6 @@ class App extends Component {
                 ) }/>
 
                 <Route path="/post/edit/:postId" render={(props) => ( <EditPost postData={this.getPostData(props.match.params.postId)}/> ) }/>
-
-                
 
             </div>
         );

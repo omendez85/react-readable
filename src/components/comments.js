@@ -8,7 +8,7 @@ import AddComment from './addComment';
 
 class Comments extends Component {
     state = {
-        showErrorForm: false
+        showErrorFormComments: false
     }
     componentDidMount() {
         this.props.commentActions.getCommentsPost(this.props.postId);
@@ -27,7 +27,7 @@ class Comments extends Component {
             this.props.commentActions.addComment(fieldsValues);
             return;
         }
-        this.setState({ showErrorForm: true });
+        this.setState({ showErrorFormComments: true });
     }
 
     render() {
@@ -53,7 +53,7 @@ class Comments extends Component {
                     </ul>
                 </div>
                 <div className="o-grid__cell">
-                    <AddComment onNewComment={this.newComment} showError={this.state.showErrorForm}/>
+                    <AddComment onNewComment={this.newComment} showError={this.state.showErrorFormComments}/>
                 </div>
             </div>
         );
