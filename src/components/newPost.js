@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ListCategories from './listCategories';
 
 const newPost = (props) => {
+    console.log(props);
     return (
         <div className="o-grid__cell">
             <h3 className="c-heading u-super">Add Post</h3>
-            <form onSubmit={props.onSubmitPost} className='editPostForm'>
-                <span className={`errorMessage c-link c-link--error ${props.showError ? 'show' : ''}`}>Please fill all the fields</span>
+            <form onSubmit={props.onSubmitPost} className='newPostForm'>
+                <span className={`errorMessage c-link c-link--error ${props.onShowErrorForm ? 'show' : ''}`}>Please fill all the fields</span>
                 <label>
                     Title
                     <input className="c-field" name="title" type="text"/>

@@ -75,6 +75,7 @@ class App extends Component {
              fieldsValues.category !== undefined) {
              this.props.postActions.addPost(fieldsValues);
              document.querySelector('.newPostForm').reset();
+             this.setState({ showErrorFormPost: false });
              return;
         }
         this.setState({ showErrorFormPost: true });
@@ -88,6 +89,8 @@ class App extends Component {
              fieldsValues.body !== undefined) {
              this.props.postActions.editPost(fieldsValues);
              document.querySelector('.editPostForm').reset();
+             this.setState({ showErrorFormPost: false });
+             this.props.history.push(`/post/${fieldsValues.postId}`);
              return;
         }
         this.setState({ showErrorFormPost: true });
