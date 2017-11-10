@@ -64,7 +64,25 @@ export function addComment (comment) {
       };
 }
 
+/************* EDIT COMMENTS **********/
 
+export function editCommentAction (comment) {
+  return {
+    type: EDIT_COMMENT,
+    data: comment
+  }
+}
+
+export function editComment (comment) {
+    console.log(comment);
+    comment.timestamp = new Date().getTime();
+    return dispatch => {
+        Api.editComment(comment.id, comment)
+            .then((res) => {
+                dispatch(editCommentAction(res));
+            });
+      };
+}
 
 
 
@@ -75,14 +93,7 @@ export function removeComment ({ id }) {
   }
 }
 
-export function editComment ({ id, body, author }) {
-  return {
-    type: EDIT_COMMENT,
-    id,
-    body,
-    author
-  }
-}
+
 
 
 

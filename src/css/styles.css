@@ -7,7 +7,7 @@
 .card-post{
     padding: 5px;
     border: solid 1px #CCC;
-    border-radius: 3px;    
+    border-radius: 3px;
     margin-bottom: 10px;
 }
 .comment-item{
@@ -17,7 +17,12 @@
     box-sizing: border-box;
     list-style: none;
 }
-
+.show{
+    display: block;
+}
+.hidden{
+    display: none;
+}
 textarea{
     margin-bottom: 10px;
 }

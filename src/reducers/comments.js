@@ -5,6 +5,7 @@ const initialCommentState = {
 }
 
 const comments = function (state = initialCommentState, action) {
+    let newValues = [];
     switch (action.type) {
         case COMMENTS_ACTIONS.ADD_COMMENT:
                 return { ...state,
@@ -15,10 +16,17 @@ const comments = function (state = initialCommentState, action) {
 
             break;
         case COMMENTS_ACTIONS.EDIT_COMMENT:
+                newValues = state.listComments.map( el => {
+                    if ( el.id === action.data.id) {
+                        return action.data;
+                    }
+                    return el;
+                });
+                return { ...state, listComments: [...newValues] }
 
             break;
         case COMMENTS_ACTIONS.VOTE_COMMENT:
-                let newValues = state.listComments.map( el => {
+                newValues = state.listComments.map( el => {
                     if ( el.id === action.data.id) {
                         return action.data;
                     }

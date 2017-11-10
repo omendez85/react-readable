@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import serializeForm from 'form-serialize';
 import * as commentActions from '../actions/comments';
 import AddComment from './addComment';
+import Comment from './comment';
 
 class Comments extends Component {
     state = {
@@ -29,6 +30,15 @@ class Comments extends Component {
         }
         this.setState({ showErrorFormComments: true });
     }
+    editComment = (event) => {
+        event.preventDefault();
+
+        const fieldsValues = serializeForm(event.target, {hash: true});
+        if (fieldsValues.body !== undefined){
+            this.props.commentActions.editComment(fieldsValues);
+            return;
+        }
+    }
 
     render() {
         return (
@@ -36,20 +46,14 @@ class Comments extends Component {
                 <div className="o-grid__cell">
                 <h3 className="c-heading u-super">Comments</h3>
                     <ul className="c-list">
-                    { this.props.comments.listComments.map( (comment, i) => (
-                        <li className="c-list__item comment-item" key={i}>
-                            By: {comment.author}
-                            <Link
-                                to={`/comment/edit/${comment.id}`}
-                                className="c-link c-link--info">Edit</Link><br/>
-                                Votes: {comment.voteScore}<br/>
-                            <span className="c-tags__container">
-                                <button type="button" onClick={ () => this.voteComment(comment.id, 'upVote') } className="c-button c-button--brand">&#x1f44d;</button>
-                                <button type="button" onClick={ () => this.voteComment(comment.id, 'downVote') } className="c-button c-button--brand">	&#128078;</button>
-                            </span>
-                            <p>{comment.body}</p>
-                        </li>
-                    ))}
+                    { this.props.comments.listComments.map( (comment, i) =>
+                        <Comment
+                            comment={comment}
+                            onVoteComment={this.voteComment}
+                            onEditComment={this.editComment}
+                            key={i}
+                        />
+                    )}
                     </ul>
                 </div>
                 <div className="o-grid__cell">

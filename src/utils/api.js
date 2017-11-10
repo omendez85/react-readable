@@ -136,7 +136,7 @@ export const voteComment = (commentId, commentParams) =>
 //      timestamp: timestamp. Get this however you want.
 //      body: String
 export const editComment = (commentId, comment) =>
-  fetch(`${api}/comments/${commentId}`, { method: 'PUT', eaders: headersEdit, body: JSON.stringify(comment) })
+  fetch(`${api}/comments/${commentId}`, { method: 'PUT', headers: headersEdit, body: JSON.stringify(comment) })
     .then(res => res.json());
 
 //  DELETE /comments/:id
