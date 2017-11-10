@@ -4,7 +4,7 @@ const AddComment = (props) => {
     return (
         <div className="o-grid__cell">
             <h3 className="c-heading u-super">Add comment</h3>
-            <form onSubmit={props.onNewComment}>
+            <form onSubmit={props.onNewComment} className="addCommentForm">
 
                 <span className={`errorMessage c-link c-link--error ${props.showError ? 'show' : ''}`}>Please fill all the fields</span>
                 <label>

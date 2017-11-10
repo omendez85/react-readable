@@ -15,7 +15,8 @@ const Post = ( {postData, onVotePost} ) => {
                 <h2 className="c-heading">
                     {post.title}
                 </h2>
-                <Link to={`/post/edit/${post.id}`} className="c-link c-link--info"> Edit </Link>
+                <Link to={`/post/edit/${post.id}`} className="c-link c-link--info"> Edit </Link> |
+                <button type="button" className="c-button c-button--success u-xsmall" onClick={this.onShowEditForm}>Delete</button>
                 <div className="c-tags">
                     <span className="c-tags__container">
                         Total Votes: {post.voteScore} <br/>

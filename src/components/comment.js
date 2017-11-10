@@ -22,7 +22,9 @@ class Comment extends Component {
                     onClick={this.onShowEditForm}
                     className={`c-link c-link--info ${this.state.showFormEditComment ? 'hidden' : ''}`}>
                     Edit
-                </a><br/>
+                </a> |
+                <button type="button" className="c-button c-button--success u-xsmall" onClick={ () => { this.props.onDeleteComment(this.props.comment.id) }}>Delete</button>
+                <br/>
                 Votes: {this.props.comment.voteScore}<br/>
                 <span className="c-tags__container">
                     <button type="button" onClick={ () => this.props.onVoteComment(this.props.comment.id, 'upVote') } className="c-button c-button--brand">&#x1f44d;</button>

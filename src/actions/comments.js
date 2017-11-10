@@ -74,7 +74,6 @@ export function editCommentAction (comment) {
 }
 
 export function editComment (comment) {
-    console.log(comment);
     comment.timestamp = new Date().getTime();
     return dispatch => {
         Api.editComment(comment.id, comment)
@@ -85,14 +84,23 @@ export function editComment (comment) {
 }
 
 
+/************* DELETE COMMENTS **********/
 
-export function removeComment ({ id }) {
+export function removeCommentAction (comment) {
   return {
     type: REMOVE_COMMENT,
-    id
+    data: comment
   }
 }
 
+export function removeComment (commentId) {
+    return dispatch => {
+        Api.deleteComment(commentId)
+            .then((res) => {
+                dispatch(removeCommentAction(res));
+            });
+      };
+}
 
 
 

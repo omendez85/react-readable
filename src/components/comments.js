@@ -26,6 +26,7 @@ class Comments extends Component {
         if (fieldsValues.body !== undefined && fieldsValues.author !== undefined && this.props.postId !== undefined){
             fieldsValues.parentId = this.props.postId;
             this.props.commentActions.addComment(fieldsValues);
+            document.querySelector('.addCommentForm').reset();
             return;
         }
         this.setState({ showErrorFormComments: true });
@@ -40,6 +41,10 @@ class Comments extends Component {
         }
     }
 
+    deleteComment = (commentId) => {
+        this.props.commentActions.removeComment(commentId);
+    }
+
     render() {
         return (
             <div className="o-grid-text">
@@ -51,6 +56,7 @@ class Comments extends Component {
                             comment={comment}
                             onVoteComment={this.voteComment}
                             onEditComment={this.editComment}
+                            onDeleteComment={this.deleteComment}
                             key={i}
                         />
                     )}

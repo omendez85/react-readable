@@ -13,7 +13,11 @@ const comments = function (state = initialCommentState, action) {
                 }
             break;
         case COMMENTS_ACTIONS.REMOVE_COMMENT:
-
+                return { ...state,
+                        listComments: state.listComments.filter(item => {
+                            return item.id !== action.data.id
+                        })
+                }
             break;
         case COMMENTS_ACTIONS.EDIT_COMMENT:
                 newValues = state.listComments.map( el => {
