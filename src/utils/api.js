@@ -80,16 +80,16 @@ export const editPost = (postId, postParams) =>
 //      Sets the deleted flag for a post to 'true'.
 //      Sets the parentDeleted flag for all child comments to 'true'.  **************
 export const deletePost = (postId) =>
-  fetch(`${api}/posts/${postId}`, { method: 'DELETED', headers, body: JSON.stringify({deleted: true}) })
-    .then(res => res.json())
-    .then( (res) => {
-        //get all comments related to the postId
-        const commentsReleated = getCommentsByPostId(postId);
-        commentsReleated.forEach( comment => {
-            deleteComment(comment.id);
-        })
-        return res.categories
-    });
+  fetch(`${api}/posts/${postId}`, { method: 'DELETE', headers: headersEdit, body: JSON.stringify( {deleted: true}) })
+    .then(res => res.json());
+    // .then( (res) => {
+    //     //get all comments related to the postId
+    //     const commentsReleated = getCommentsByPostId(postId);
+    //     commentsReleated.forEach( comment => {
+    //         deleteComment(comment.id);
+    //     })
+    //     return res.categories
+    // });
 
 
 //  GET /posts/:id/comments

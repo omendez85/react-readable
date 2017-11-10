@@ -12,7 +12,7 @@ class SortBy extends Component {
                             <option value="1">Newest</option>
                             <option value="2">Oldest</option>
                             <option value="3">Most voted</option>
-                            <option value="4">Less votes</option>
+                            <option value="4">Less voted</option>
                         </select>
                     </label>
                 </div>

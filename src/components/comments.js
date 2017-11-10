@@ -49,7 +49,7 @@ class Comments extends Component {
         return (
             <div className="o-grid-text">
                 <div className="o-grid__cell">
-                <h3 className="c-heading u-super">Comments</h3>
+                <h3 className="c-heading u-super">Comments: {this.props.comments.listComments.length}</h3>
                     <ul className="c-list">
                     { this.props.comments.listComments.map( (comment, i) =>
                         <Comment

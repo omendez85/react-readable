@@ -13,10 +13,12 @@ const posts = function (state = initialPostsState, action) {
                 return { ...state,
                         listPosts: [...state.listPosts, action.data]
                 }
-            break;
         case POSTS_ACTIONS.REMOVE_POST:
-
-            break;
+                return { ...state,
+                        listPosts: state.listPosts.filter(item => {
+                            return item.id !== action.data.id
+                        })
+                }
         case POSTS_ACTIONS.EDIT_POST:
                 newValues = state.listPosts.map( el => {
                     if ( el.id === action.data.id) {
@@ -25,7 +27,6 @@ const posts = function (state = initialPostsState, action) {
                     return el;
                 });
                 return { ...state, listPosts: [...newValues] }
-            break;
         case POSTS_ACTIONS.VOTE_POST:
                 newValues = state.listPosts.map( el => {
                     if ( el.id === action.data.id) {
@@ -34,8 +35,6 @@ const posts = function (state = initialPostsState, action) {
                     return el;
                 });
                 return { ...state, listPosts: [...newValues] }
-            break;
-            break;
         case POSTS_ACTIONS.NEW_COMMENT_POST:
                 newValues = state.listPosts.map( el => {
                     if ( el.id === action.data.id) {
@@ -44,7 +43,6 @@ const posts = function (state = initialPostsState, action) {
                     return el;
                 });
                 return { ...state, listPosts: [...newValues] }
-            break;
         default:
             return state
     }

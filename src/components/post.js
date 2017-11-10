@@ -2,13 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Comments from './comments';
 
-const Post = ( {postData, onVotePost} ) => {
+const Post = ( {postData, onVotePost, onDeletePost} ) => {
 
     if(!postData.length) return null;
 
     let post = postData[0];
     let date = new Date(post.timestamp);
     date = date.toGMTString();
+
+
+console.log(post);
+
     return (
         <div className="o-grid__cell">
             <div className="o-grid-text">
@@ -16,7 +20,7 @@ const Post = ( {postData, onVotePost} ) => {
                     {post.title}
                 </h2>
                 <Link to={`/post/edit/${post.id}`} className="c-link c-link--info"> Edit </Link> |
-                <button type="button" className="c-button c-button--success u-xsmall" onClick={this.onShowEditForm}>Delete</button>
+                <button type="button" onClick={ () => { onDeletePost(post.id) }} className="c-button c-button--success u-xsmall">Delete</button>
                 <div className="c-tags">
                     <span className="c-tags__container">
                         Total Votes: {post.voteScore} <br/>
@@ -26,7 +30,7 @@ const Post = ( {postData, onVotePost} ) => {
                 </div>
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {post.category}</span> <br/>
-                <span className="c-heading__sub">Comments: {post.commentCount}</span> <br/>
+                <span className="c-heading__sub">Author: {post.author}</span> <br/>
                 <p className="c-paragraph">{post.body}</p>
             </div>
 

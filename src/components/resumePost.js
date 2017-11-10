@@ -17,7 +17,7 @@ const ResumePost = (props) => {
                 </h2>
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {props.post.category}</span> <br/>
-                <span className="c-heading__sub">Comments: {props.post.commentCount}</span>
+                <span className="c-heading__sub">Author: {props.post.author}</span>
                 <p className="c-paragraph">{resumeBody}</p>
             </div>
         </div>

@@ -96,26 +96,28 @@ export function editPost (post) {
     return dispatch => {
         Api.editPost(post.postId, post)
             .then( res => {
-
                 dispatch(editPostAction(res));
             });
       };
 }
 
+/*************** REMOVE POST *************/
 
-
-
-
-
-
-
-export function removePost ({ id }) {
+export function removePostAction (post) {
   return {
     type: REMOVE_POST,
-    id
+    data: post
   }
 }
 
+export function removePost (postId) {
+    return dispatch => {
+        Api.deletePost(postId)
+            .then( res => {
+                dispatch(removePostAction(res));
+            });
+      };
+}
 
 
 

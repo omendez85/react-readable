@@ -95,6 +95,11 @@ class App extends Component {
         this.setState({ showErrorFormPost: true });
     }
 
+    deletePost = (postId) => {
+        this.props.postActions.removePost(postId);
+        this.props.history.push('/');
+    }
+
     render() {
     return (
             <div className="App">
@@ -113,7 +118,11 @@ class App extends Component {
                 )}/>
 
                 <Route path="/post/:postId" render={(props) => (
-                    <Post postData={this.getPostData(props.match.params.postId)} onVotePost={this.votePost}/>
+                    <Post
+                        postData={this.getPostData(props.match.params.postId)}
+                        onVotePost={this.votePost}
+                        onDeletePost={this.deletePost}
+                    />
                 ) }/>
 
                 <Route path="/post/edit/:postId" render={(props) => (

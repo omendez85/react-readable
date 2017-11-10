@@ -11,14 +11,12 @@ const comments = function (state = initialCommentState, action) {
                 return { ...state,
                         listComments: [...state.listComments, action.data]
                 }
-            break;
         case COMMENTS_ACTIONS.REMOVE_COMMENT:
                 return { ...state,
                         listComments: state.listComments.filter(item => {
                             return item.id !== action.data.id
                         })
                 }
-            break;
         case COMMENTS_ACTIONS.EDIT_COMMENT:
                 newValues = state.listComments.map( el => {
                     if ( el.id === action.data.id) {
@@ -28,7 +26,6 @@ const comments = function (state = initialCommentState, action) {
                 });
                 return { ...state, listComments: [...newValues] }
 
-            break;
         case COMMENTS_ACTIONS.VOTE_COMMENT:
                 newValues = state.listComments.map( el => {
                     if ( el.id === action.data.id) {
@@ -38,7 +35,6 @@ const comments = function (state = initialCommentState, action) {
                 });
                 return { ...state, listComments: [...newValues] }
 
-            break;
         case COMMENTS_ACTIONS.GET_COMMENTS:
                 return  { ...state, listComments: [...action.data] }
         default:
