@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import lang from '../utils/lang';
 import ResumePost from '../components/resumePost';
-import { Link } from 'react-router-dom';
 
 class ListPosts extends Component {
   render() {

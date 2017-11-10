@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
-import ListCategories from './listCategories';
+import React from 'react';
 
 const EditPost = ( props ) => {
-
-    if(!props.postData.length) return null;
-
     let post = props.postData[0];
-    let date = new Date(post.timestamp);
-    date = date.toGMTString();
     return (
         <div className="o-grid__cell">
             <div className="o-grid-text">
@@ -20,7 +14,6 @@ const EditPost = ( props ) => {
                         Title
                         <input className="c-field" name="title" type="text" defaultValue={post.title}/>
                     </label>
-                    <ListCategories optionSelected={post.category} />
                     <label>
                         Body:
                         <textarea className="c-field" name="body" defaultValue={post.body}></textarea>

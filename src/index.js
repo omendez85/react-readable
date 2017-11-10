@@ -9,9 +9,6 @@ import './css/styles.css';
 import reducers from './reducers'
 import App from './App';
 
-
-var hashHistory = require('react-router').hashHistory;
-
 const Router = ( window.location.host.includes('github') ) ? HashRouter : BrowserRouter;
 
 const logger = store => next => action => {
@@ -22,7 +19,7 @@ const logger = store => next => action => {
   console.groupEnd(action.type)
   return result
 }
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store = createStore(
 //   reducers,
 //   composeEnhancers(

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 const OverlayLoading = () => {
     return (
         <div className="overlay-loading">

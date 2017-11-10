@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import _ from 'lodash';
-import * as Api from './utils/api';
 import serializeForm from 'form-serialize';
 
 import Header from './components/header';
