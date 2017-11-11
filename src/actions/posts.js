@@ -6,8 +6,8 @@ export const ADD_POST = 'ADD_POST'
 export const REMOVE_POST = 'REMOVE_POST'
 export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
-export const SET_CURRENT_POST = 'SET_CURRENT_POST'
 export const NEW_COMMENT_POST = 'NEW_COMMENT_POST'
+export const ORDER_POSTS = 'ORDER_POSTS'
 
 /******** INIT POSTS **************/
 
@@ -119,10 +119,15 @@ export function removePost (postId) {
       };
 }
 
+/*************** ORDER POSTS **************/
 
-
-
-
+export function orderPosts (order, direction) {
+    return {
+        type: ORDER_POSTS,
+        order,
+        direction
+    }
+}
 
 /*
 Posts:

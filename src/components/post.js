@@ -10,9 +10,6 @@ const Post = ( {postData, onVotePost, onDeletePost} ) => {
     let date = new Date(post.timestamp);
     date = date.toGMTString();
 
-
-console.log(post);
-
     return (
         <div className="o-grid__cell">
             <div className="o-grid-text">
@@ -23,7 +20,7 @@ console.log(post);
                 <button type="button" onClick={ () => { onDeletePost(post.id) }} className="c-button c-button--success u-xsmall">Delete</button>
                 <div className="c-tags">
                     <span className="c-tags__container">
-                        Total Votes: {post.voteScore} <br/>
+                        Votes rating: {post.voteScore} <br/>
                         <button type="button" className="c-button c-button--brand" onClick={ () => onVotePost(post.id, 'upVote') }>&#x1f44d;</button>
                         <button type="button" className="c-button c-button--brand" onClick={ () => onVotePost(post.id, 'downVote') }>&#128078;</button>
                     </span>

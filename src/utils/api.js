@@ -82,15 +82,6 @@ export const editPost = (postId, postParams) =>
 export const deletePost = (postId) =>
   fetch(`${api}/posts/${postId}`, { method: 'DELETE', headers: headersEdit, body: JSON.stringify( {deleted: true}) })
     .then(res => res.json());
-    // .then( (res) => {
-    //     //get all comments related to the postId
-    //     const commentsReleated = getCommentsByPostId(postId);
-    //     commentsReleated.forEach( comment => {
-    //         deleteComment(comment.id);
-    //     })
-    //     return res.categories
-    // });
-
 
 //  GET /posts/:id/comments
 //    USAGE:

@@ -18,6 +18,7 @@ const ResumePost = (props) => {
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {props.post.category}</span> <br/>
                 <span className="c-heading__sub">Author: {props.post.author}</span>
+                <span className="c-heading__sub">Vote rating: {props.post.voteScore}</span>
                 <p className="c-paragraph">{resumeBody}</p>
             </div>
         </div>

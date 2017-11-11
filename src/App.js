@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Route, withRouter } from 'react-router-dom';
-import _ from 'lodash';
 import serializeForm from 'form-serialize';
 
 import Header from './components/header';
@@ -21,6 +20,7 @@ import * as categoriesActions from './actions/categories';
 class App extends Component {
     state = {
         sortBy: '1',
+        filterByCategories: 'all',
         showErrorFormPost: false
     }
 
@@ -51,9 +51,9 @@ class App extends Component {
               break;
           default:
                 order = 'timestamp';
-                direction = 'desc';
+                direction = 'direction';
         }
-        this.setState({ posts: _.orderBy(this.state.posts.listPosts, [order], [direction]) });
+        this.props.postActions.orderPosts(order, direction);
     }
 
     getPostData = (postId) => {
@@ -62,6 +62,10 @@ class App extends Component {
 
     votePost = (postId, typeVote) => {
         this.props.postActions.votePosts(postId, typeVote);
+    }
+
+    filterPostsByCategory = (category) => {
+        this.setState({ filterByCategories: category });
     }
 
     submitNewPost = (event) => {
@@ -101,20 +105,23 @@ class App extends Component {
     }
 
     render() {
-    return (
+
+        const filteredPosts = ( this.state.filterByCategories === 'all') ? this.props.posts.listPosts : this.props.posts.listPosts.filter( post => post.category === this.state.filterByCategories) ;
+
+        return (
             <div className="App">
                 <Header/>
                 <Route exact path='/' render={() => (
                     <div className="o-grid--full">
-                        <Categories categories={this.props.categories.listCategories}/>
+                        <Categories
+                            categories={this.props.categories.listCategories}
+                            currentCategory={this.state.filterByCategories}
+                            onSelectCategory={this.filterPostsByCategory}
+                        />
                         <SortBy onSortPostBy={this.onSortPostBy}/>
-                        <ListPosts posts={this.props.posts.listPosts} onSetPost={this.onSetPost}/>
+                        <ListPosts posts={filteredPosts} onSetPost={this.onSetPost}/>
                         <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.submitNewPost} />
                     </div>
-                )}/>
-
-                <Route exact path="/category/:categoryId" render={() =>(
-                    <div>Some: {this.props.categoryId}</div>
                 )}/>
 
                 <Route path="/post/:postId" render={(props) => (

@@ -1,4 +1,5 @@
 import * as POSTS_ACTIONS from '../actions/posts';
+import _ from 'lodash';
 
 const initialPostsState = {
     listPosts: []
@@ -43,6 +44,10 @@ const posts = function (state = initialPostsState, action) {
                     return el;
                 });
                 return { ...state, listPosts: [...newValues] }
+
+        case POSTS_ACTIONS.ORDER_POSTS:
+                newValues = _.orderBy(state.listPosts, [action.order], [action.direction]);
+                return { ...state, listPosts: [...newValues] }                            
         default:
             return state
     }
