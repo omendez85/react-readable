@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { BrowserRouter, HashRouter } from 'react-router-dom'
 import ReduxThunk from 'redux-thunk'
 import './css/blaze.min.css';
@@ -19,16 +19,8 @@ const logger = store => next => action => {
   console.groupEnd(action.type)
   return result
 }
-//const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-// const store = createStore(
-//   reducers,
-//   composeEnhancers(
-//     applyMiddleware(ReduxThunk, logger)
-//   )
-// )
 
 const createStoreWithMiddleware = applyMiddleware(ReduxThunk, logger)(createStore);
-
 
 ReactDOM.render(
     <Provider store={createStoreWithMiddleware(reducers)}>

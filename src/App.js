@@ -10,7 +10,6 @@ import ListPosts from './components/listPosts';
 import SortBy from './components/sortBy';
 import Post from './components/post';
 import EditPost from './components/editPost';
-import OverlayLoading from './components/overlayLoading';
 import NewPost from './components/newPost';
 
 import * as commentActions from './actions/comments';
@@ -26,11 +25,11 @@ class App extends Component {
 
     componentDidMount() {
         this.props.categoriesActions.getCategories();
-        this.props.postActions.getInitListPosts();
+        this.props.postActions.getInitListPosts('timestamp', 'desc');
     }
 
     onSortPostBy  = (event) => {
-        let option = parseInt(event.target.value);
+        let option = parseInt(event.target.value, 10);
         let order, direction;
         switch (option) {
           case 1:

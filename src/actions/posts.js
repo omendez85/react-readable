@@ -11,17 +11,20 @@ export const ORDER_POSTS = 'ORDER_POSTS'
 
 /******** INIT POSTS **************/
 
-export function initPosts (posts) {
+export function initPosts (posts, order, direction) {
     return {
         type: INIT_POSTS,
-        data: posts
+        data: posts,
+        order,
+        direction
     }
 }
-export function getInitListPosts() {
+
+export function getInitListPosts(order, direction) {
     return dispatch => {
         Api.getPosts()
             .then( posts => {
-                dispatch(initPosts(posts));
+                dispatch(initPosts(posts, order, direction));
             });
       };
 }

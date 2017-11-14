@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 import serializeForm from 'form-serialize';
 import * as commentActions from '../actions/comments';
 import AddComment from './addComment';

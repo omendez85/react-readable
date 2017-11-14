@@ -1,5 +1,6 @@
 html, body{
     background: white;
+    font-family: sans-serif;
 }
 .list-categories h2{
     display: inline;

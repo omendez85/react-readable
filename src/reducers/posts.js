@@ -9,7 +9,8 @@ const posts = function (state = initialPostsState, action) {
     let newValues;
     switch (action.type) {
         case POSTS_ACTIONS.INIT_POSTS:
-                return  { ...state, listPosts: [...action.data] }
+                newValues = _.orderBy(action.data, [action.order], [action.direction]);
+                return { ...state, listPosts: [...newValues] }
         case POSTS_ACTIONS.ADD_POST:
                 return { ...state,
                         listPosts: [...state.listPosts, action.data]
@@ -47,7 +48,7 @@ const posts = function (state = initialPostsState, action) {
 
         case POSTS_ACTIONS.ORDER_POSTS:
                 newValues = _.orderBy(state.listPosts, [action.order], [action.direction]);
-                return { ...state, listPosts: [...newValues] }                            
+                return { ...state, listPosts: [...newValues] }
         default:
             return state
     }

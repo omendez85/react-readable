@@ -33,7 +33,7 @@ class Comment extends Component {
 
                 <p className={this.state.showFormEditComment ? 'hidden' : ''} >{this.props.comment.body}</p>
 
-                <form onSubmit={this.onSaveEditForm} className='editPostForm' className={this.state.showFormEditComment ? '' : 'hidden'}>
+                <form onSubmit={this.onSaveEditForm} className={`editPostForm ${this.state.showFormEditComment ? '' : 'hidden'}`}>
                     <input name="id" type="hidden" value={this.props.comment.id}/>
 
                     <label>
