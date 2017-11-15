@@ -1,10 +1,13 @@
 import React from 'react';
 import Comments from './comments';
 import ActionsBtnsPost from './actionsBtnsPost';
+import NotPageFound from './notPageFound';
 
 const Post = ( {postData, onVotePost, onDeletePost} ) => {
 
-    if(!postData.length) return null;
+    if(!postData.length) {
+        return <NotPageFound />;
+    }
 
     let post = postData[0];
     let date = new Date(post.timestamp);
