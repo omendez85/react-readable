@@ -6,7 +6,7 @@ import NotPageFound from './notPageFound';
 const Post = ( {postData, onVotePost, onDeletePost} ) => {
 
     if(!postData.length) {
-        return <NotPageFound />;
+        return <NotPageFound  textPage="Post not found" />;
     }
 
     let post = postData[0];

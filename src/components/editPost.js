@@ -7,6 +7,7 @@ const EditPost = ( props ) => {
             <div className="o-grid-text">
                 <form onSubmit={props.onSubmitEditPost} className='editPostForm'>
                     <input name="postId" type="hidden" value={post.id}/>
+                    <input name="category" type="hidden" value={post.category}/>
 
                     <span className={`errorMessage c-link c-link--error ${props.onShowErrorMsg ? 'show' : ''}`}>Please fill all the fields</span>
 

@@ -11,6 +11,7 @@ import SortBy from './components/sortBy';
 import Post from './components/post';
 import EditPost from './components/editPost';
 import NewPost from './components/newPost';
+import NotPageFound from './components/notPageFound';
 
 import * as commentActions from './actions/comments';
 import * as postActions from './actions/posts';
@@ -19,7 +20,7 @@ import * as categoriesActions from './actions/categories';
 class App extends Component {
     state = {
         sortBy: '1',
-        filterByCategories: 'all',
+        filterByCategories: '',
         showErrorFormPost: false
     }
 
@@ -92,7 +93,7 @@ class App extends Component {
              this.props.postActions.editPost(fieldsValues);
              document.querySelector('.editPostForm').reset();
              this.setState({ showErrorFormPost: false });
-             this.props.history.push(`/post/${fieldsValues.postId}`);
+             this.props.history.push(`/${fieldsValues.category}/${fieldsValues.postId}`);
              return;
         }
         this.setState({ showErrorFormPost: true });
@@ -103,31 +104,47 @@ class App extends Component {
         this.props.history.push('/');
     }
 
-    render() {
+    returnHome = () => {
+        this.setState({ filterByCategories: '' });
+    }
 
-        const filteredPosts = ( this.state.filterByCategories === 'all') ? this.props.posts.listPosts : this.props.posts.listPosts.filter( post => post.category === this.state.filterByCategories) ;
+    render() {
 
         return (
             <div className="App">
-                <Header/>
-                <Route exact path='/' render={() => (
-                    <div className="o-grid--full">
-                        <Categories
-                            categories={this.props.categories.listCategories}
-                            currentCategory={this.state.filterByCategories}
-                            onSelectCategory={this.filterPostsByCategory}
-                        />
-                        <SortBy onSortPostBy={this.onSortPostBy}/>
-                        <ListPosts
-                            posts={filteredPosts} onSetPost={this.onSetPost}
-                            onDeletePost={this.deletePost}
-                            onVotePost={this.votePost}
-                        />
-                        <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.submitNewPost} />
-                    </div>
-                )}/>
+                <Header onReturnHome={this.returnHome}/>
+                <Route exact path='/:category?' render={() => {
 
-                <Route path="/post/:postId" render={(props) => (
+
+                    const catExist = this.props.categories.listCategories.find( cat => cat.name === this.state.filterByCategories);
+
+                    if(!catExist && this.state.filterByCategories !== "") {
+                        return <NotPageFound textPage="Category not found" />;
+                    }
+
+                    const filteredPosts = ( this.state.filterByCategories === '') ? this.props.posts.listPosts : this.props.posts.listPosts.filter( post => post.category === this.state.filterByCategories) ;
+
+                    return (<div className="o-grid--full">
+                                <Categories
+                                    categories={this.props.categories.listCategories}
+                                    currentCategory={this.state.filterByCategories}
+                                    onSelectCategory={this.filterPostsByCategory}
+                                />
+                                <SortBy onSortPostBy={this.onSortPostBy}/>
+                                <ListPosts
+                                    posts={filteredPosts}
+                                    onSetPost={this.onSetPost}
+                                    onDeletePost={this.deletePost}
+                                    onVotePost={this.votePost}
+                                />
+                                <NewPost
+                                    categories={this.props.categories.listCategories}
+                                    onShowErrorForm={this.state.showErrorFormPost}
+                                    onSubmitPost={this.submitNewPost} />
+                            </div>)
+                }}/>
+
+                <Route path="/:category/:postId" render={(props) => (
                     <Post
                         postData={this.getPostData(props.match.params.postId)}
                         onVotePost={this.votePost}

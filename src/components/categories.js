@@ -1,5 +1,6 @@
 import React from 'react';
 import lang from '../utils/lang';
+import { Link } from 'react-router-dom';
 
 const Categories = (props) => {
     return (
@@ -7,14 +8,18 @@ const Categories = (props) => {
           <h2 className="c-heading"> {lang.categories}:</h2>
           <div className="c-tags">
             <span className="c-tags__container">
-                <a
-                    onClick={ () => props.onSelectCategory('all') }
-                    className={`c-button c-tag ${ (props.currentCategory === 'all') ? 'c-button--success' : ''}`}> All </a>
+
+                <Link
+                    to='/'
+                    onClick={ () => props.onSelectCategory('') }
+                    className={`c-button c-tag ${ (props.currentCategory === '') ? 'c-button--success' : ''}`}> All </Link>
+
               { props.categories.map( category => (
-                <a
-                    onClick={ () => props.onSelectCategory(category.name) }
-                    className={`c-button c-tag ${ (props.currentCategory === category.name) ? 'c-button--success' : ''}`}
-                    key={category.name} > {category.name} </a>
+                  <Link
+                      key={category.name}
+                      to={`/${category.name}`}
+                      onClick={ () => props.onSelectCategory(category.name) }
+                      className={`c-button c-tag ${ (props.currentCategory === category.name) ? 'c-button--success' : ''}`}> {category.name} </Link>
               ))}
             </span>
           </div>

@@ -5,7 +5,7 @@ const NotPageFound = (props) => {
         <div className="o-grid__cell">
             <div className="o-grid-text">
                 <h1 className="c-heading">
-                    Not Page Found
+                    {props.textPage}
                 </h1>
             </div>
         </div>

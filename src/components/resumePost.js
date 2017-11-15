@@ -11,7 +11,7 @@ const ResumePost = (props) => {
             <div className="card-post o-grid-text">
                 <h2 className="c-heading">
                     <Link
-                        to={`/post/${props.post.id}`}
+                        to={`/${props.post.category}/${props.post.id}`}
                         className="c-link c-link--info">
                         {props.post.title}
                     </Link>
@@ -26,7 +26,7 @@ const ResumePost = (props) => {
 
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {props.post.category}</span> <br/>
-                <span className="c-heading__sub">Author: {props.post.author}</span>
+                <span className="c-heading__sub">Author: {props.post.author}</span><br/>
                 <span className="c-heading__sub">Vote rating: {props.post.voteScore}</span>
                 <p className="c-paragraph">{resumeBody}</p>
             </div>
