@@ -6,7 +6,12 @@ const ListPosts = (props) => {
         <div className="o-grid__cell list-posts">
             <div className="o-grid o-grid--wrap">
                   { props.posts.map( (post, i) => (
-                      <ResumePost post={post} key={i}>first</ResumePost>
+                      <ResumePost
+                          post={post}
+                          onDeletePost={props.onDeletePost}
+                          onVotePost={props.onVotePost}
+                          key={i}
+                      />
                   ))}
             </div>
         </div>

@@ -57,3 +57,9 @@ textarea{
     text-align: center;
     line-height: 50px;
 }
+.actions-post{
+    border: solid 1px gray;
+    border-left: none;
+    border-right: none;
+    padding: 10px 0;
+}

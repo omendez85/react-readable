@@ -118,7 +118,11 @@ class App extends Component {
                             onSelectCategory={this.filterPostsByCategory}
                         />
                         <SortBy onSortPostBy={this.onSortPostBy}/>
-                        <ListPosts posts={filteredPosts} onSetPost={this.onSetPost}/>
+                        <ListPosts
+                            posts={filteredPosts} onSetPost={this.onSetPost}
+                            onDeletePost={this.deletePost}
+                            onVotePost={this.votePost}
+                        />
                         <NewPost categories={this.props.categories.listCategories} onShowErrorForm={this.state.showErrorFormPost} onSubmitPost={this.submitNewPost} />
                     </div>
                 )}/>

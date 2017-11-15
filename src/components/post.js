@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Comments from './comments';
+import ActionsBtnsPost from './actionsBtnsPost';
 
 const Post = ( {postData, onVotePost, onDeletePost} ) => {
 
@@ -16,15 +16,12 @@ const Post = ( {postData, onVotePost, onDeletePost} ) => {
                 <h2 className="c-heading">
                     {post.title}
                 </h2>
-                <Link to={`/post/edit/${post.id}`} className="c-link c-link--info"> Edit </Link> |
-                <button type="button" onClick={ () => { onDeletePost(post.id) }} className="c-button c-button--success u-xsmall">Delete</button>
-                <div className="c-tags">
-                    <span className="c-tags__container">
-                        Votes rating: {post.voteScore} <br/>
-                        <button type="button" className="c-button c-button--brand" onClick={ () => onVotePost(post.id, 'upVote') }>&#x1f44d;</button>
-                        <button type="button" className="c-button c-button--brand" onClick={ () => onVotePost(post.id, 'downVote') }>&#128078;</button>
-                    </span>
-                </div>
+                <ActionsBtnsPost
+                    postId={post.id}
+                    voteScore={post.voteScore}
+                    onDeletePost={onDeletePost}
+                    onVotePost={onVotePost}
+                />
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {post.category}</span> <br/>
                 <span className="c-heading__sub">Author: {post.author}</span> <br/>

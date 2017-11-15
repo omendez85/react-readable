@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ActionsBtnsPost from './actionsBtnsPost';
 
 const ResumePost = (props) => {
     let date = new Date(props.post.timestamp);
@@ -15,6 +16,14 @@ const ResumePost = (props) => {
                         {props.post.title}
                     </Link>
                 </h2>
+
+                <ActionsBtnsPost
+                    postId={props.post.id}
+                    voteScore={props.post.voteScore}
+                    onDeletePost={props.onDeletePost}
+                    onVotePost={props.onVotePost}
+                />
+
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {props.post.category}</span> <br/>
                 <span className="c-heading__sub">Author: {props.post.author}</span>
