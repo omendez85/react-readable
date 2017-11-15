@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import serializeForm from 'form-serialize';
 import * as commentActions from '../actions/comments';
+import * as postActions from '../actions/posts';
+
 import AddComment from './addComment';
 import Comment from './comment';
 
@@ -25,6 +27,8 @@ class Comments extends Component {
         if (fieldsValues.body !== undefined && fieldsValues.author !== undefined && this.props.postId !== undefined){
             fieldsValues.parentId = this.props.postId;
             this.props.commentActions.addComment(fieldsValues);
+            this.props.postActions.updateComment(this.props.postId, 'add');
+
             document.querySelector('.addCommentForm').reset();
             return;
         }
@@ -42,6 +46,7 @@ class Comments extends Component {
 
     deleteComment = (commentId) => {
         this.props.commentActions.removeComment(commentId);
+        this.props.postActions.updateComment(this.props.postId, 'remove');
     }
 
     render() {
@@ -78,6 +83,7 @@ function mapStateToProps ({ comments, posts }) {
 function mapDispatchToProps (dispatch) {
     return {
         commentActions: bindActionCreators( commentActions, dispatch ),
+        postActions: bindActionCreators( postActions, dispatch )
     }
 }
 

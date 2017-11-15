@@ -26,7 +26,7 @@ class App extends Component {
 
     componentDidMount() {
         this.props.categoriesActions.getCategories();
-        this.props.postActions.getInitListPosts('timestamp', 'desc');
+        this.props.postActions.getInitListPosts('timestamp', 'desc');        
     }
 
     onSortPostBy  = (event) => {
