@@ -4,7 +4,7 @@ import ActionsBtnsPost from './actionsBtnsPost';
 import NotPageFound from './notPageFound';
 
 const Post = ( {postData, onVotePost, onDeletePost} ) => {
-    console.log(postData);
+
     if(!postData.length) {
         return <NotPageFound  textPage="Post not found" />;
     }

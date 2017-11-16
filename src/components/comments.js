@@ -31,6 +31,7 @@ class Comments extends Component {
             this.props.postActions.updateComment(this.props.postId, 'add');
 
             document.querySelector('.addCommentForm').reset();
+            this.setState({ showErrorFormComments: false });
             return;
         }
         this.setState({ showErrorFormComments: true });
@@ -68,7 +69,9 @@ class Comments extends Component {
                     </ul>
                 </div>
                 <div className="o-grid__cell">
-                    <AddComment onNewComment={this.newComment} showError={this.state.showErrorFormComments}/>
+                    <AddComment
+                        onNewComment={this.newComment}
+                        showError={this.state.showErrorFormComments}/>
                 </div>
             </div>
         );

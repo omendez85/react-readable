@@ -1,7 +1,14 @@
 import React from 'react';
+import NotPageFound from './notPageFound';
 
 const EditPost = ( props ) => {
+
+    if(!props.postData.length) {
+        return <NotPageFound  textPage="Post not found" />;
+    }
+
     let post = props.postData[0];
+
     return (
         <div className="o-grid__cell">
             <div className="o-grid-text">

@@ -26,7 +26,7 @@ class App extends Component {
 
     componentDidMount() {
         this.props.categoriesActions.getCategories();
-        this.props.postActions.getInitListPosts('timestamp', 'desc');        
+        this.props.postActions.getInitListPosts('timestamp', 'desc');
     }
 
     onSortPostBy  = (event) => {
@@ -115,7 +115,6 @@ class App extends Component {
                 <Header onReturnHome={this.returnHome}/>
                 <Route exact path='/:category?' render={() => {
 
-
                     const catExist = this.props.categories.listCategories.find( cat => cat.name === this.state.filterByCategories);
 
                     if(!catExist && this.state.filterByCategories !== "") {
@@ -144,16 +143,27 @@ class App extends Component {
                             </div>)
                 }}/>
 
-                <Route path="/:category/:postId" render={(props) => (
-                    <Post
+                <Route exact path="/:category/:postId" render={(props) => {
+
+                    const catExist = this.props.categories.listCategories.find( cat => cat.name === props.match.params.category);
+
+                    if(!catExist) {
+                        return <NotPageFound textPage="Page not found" />;
+                    }
+
+                    return <Post
                         postData={this.getPostData(props.match.params.postId)}
                         onVotePost={this.votePost}
                         onDeletePost={this.deletePost}
                     />
-                ) }/>
+                }}/>
 
-                <Route path="/post/edit/:postId" render={(props) => (
-                    <EditPost postData={this.getPostData(props.match.params.postId)} onSubmitEditPost={this.submitEditPost} onShowErrorMsg={this.state.showErrorFormPost}/>
+                <Route exact path="/post/edit/:postId" render={(props) => (
+                    <EditPost
+                        postData={this.getPostData(props.match.params.postId)}
+                        onSubmitEditPost={this.submitEditPost}
+                        onShowErrorMsg={this.state.showErrorFormPost}
+                    />
                 )}/>
 
             </div>
