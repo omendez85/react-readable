@@ -8,6 +8,7 @@ export const EDIT_POST = 'EDIT_POST'
 export const VOTE_POST = 'VOTE_POST'
 export const NEW_COMMENT_POST = 'NEW_COMMENT_POST'
 export const ORDER_POSTS = 'ORDER_POSTS'
+export const UPDATE_COMMENTS_COUNTER = 'UPDATE_COMMENTS_COUNTER'
 
 /******** INIT POSTS **************/
 
@@ -129,6 +130,17 @@ export function orderPosts (order, direction) {
         type: ORDER_POSTS,
         order,
         direction
+    }
+}
+
+
+/*********** UPDATE COMMENTS COUNT **************/
+
+export function updateComment (postId, commentValue) {
+    return {
+        type: UPDATE_COMMENTS_COUNTER,
+        postId,
+        commentValue
     }
 }
 

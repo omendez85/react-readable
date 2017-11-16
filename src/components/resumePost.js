@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ActionsBtnsPost from './actionsBtnsPost';
 
 const ResumePost = (props) => {
+
     let date = new Date(props.post.timestamp);
     date = date.toGMTString();
     let resumeBody = (props.post.body.length >= 100) ? props.post.body.substring(0,100) : props.post.body;
@@ -28,7 +29,6 @@ const ResumePost = (props) => {
                 <span className="c-heading__sub">Category: {props.post.category}</span> <br/>
                 <span className="c-heading__sub">Comments: {props.post.commentCount}</span> <br/>
                 <span className="c-heading__sub">Author: {props.post.author}</span><br/>
-                <span className="c-heading__sub">Vote rating: {props.post.voteScore}</span>
                 <p className="c-paragraph">{resumeBody}</p>
             </div>
         </div>

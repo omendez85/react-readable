@@ -27,6 +27,7 @@ class Comments extends Component {
         if (fieldsValues.body !== undefined && fieldsValues.author !== undefined && this.props.postId !== undefined){
             fieldsValues.parentId = this.props.postId;
             this.props.commentActions.addComment(fieldsValues);
+
             this.props.postActions.updateComment(this.props.postId, 'add');
 
             document.querySelector('.addCommentForm').reset();
@@ -53,7 +54,7 @@ class Comments extends Component {
         return (
             <div className="o-grid-text">
                 <div className="o-grid__cell">
-                <h3 className="c-heading u-super">Comments: {this.props.comments.listComments.length}</h3>
+                <h3 className="c-heading u-super">Comments</h3>
                     <ul className="c-list">
                     { this.props.comments.listComments.map( (comment, i) =>
                         <Comment
@@ -76,7 +77,8 @@ class Comments extends Component {
 
 function mapStateToProps ({ comments, posts }) {
     return {
-        comments
+        comments,
+        posts
     }
 }
 

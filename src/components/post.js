@@ -4,7 +4,7 @@ import ActionsBtnsPost from './actionsBtnsPost';
 import NotPageFound from './notPageFound';
 
 const Post = ( {postData, onVotePost, onDeletePost} ) => {
-
+    console.log(postData);
     if(!postData.length) {
         return <NotPageFound  textPage="Post not found" />;
     }
@@ -27,7 +27,9 @@ const Post = ( {postData, onVotePost, onDeletePost} ) => {
                 />
                 <span className="c-heading__sub">Date: {date}</span> <br/>
                 <span className="c-heading__sub">Category: {post.category}</span> <br/>
-                <span className="c-heading__sub">Author: {post.author}</span> <br/>
+                <span className="c-heading__sub">Comments: {post.commentCount}</span> <br/>
+                <span className="c-heading__sub">Author: {post.author}</span>
+
                 <p className="c-paragraph">{post.body}</p>
             </div>
 

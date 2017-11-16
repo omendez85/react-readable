@@ -49,6 +49,23 @@ const posts = function (state = initialPostsState, action) {
         case POSTS_ACTIONS.ORDER_POSTS:
                 newValues = _.orderBy(state.listPosts, [action.order], [action.direction]);
                 return { ...state, listPosts: [...newValues] }
+        case POSTS_ACTIONS.UPDATE_COMMENTS_COUNTER:
+
+
+        newValues = state.listPosts.map( el => {
+            if ( el.id === action.postId) {
+                if( action.commentValue === 'add') {
+                    el.commentCount++;
+                } else if( action.commentValue === 'remove') {
+                    el.commentCount--;
+                }
+            }
+            return el;
+        });
+        return { ...state, listPosts: [...newValues] }
+
+
+
         default:
             return state
     }
